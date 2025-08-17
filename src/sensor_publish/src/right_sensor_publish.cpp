@@ -10,7 +10,7 @@ using namespace std::chrono_literals;
 class SensorPublish:public rclcpp::Node{
 public:
  SensorPublish():Node("sensor"){
-    publisher_ = this->create_publisher<sensor_interface::msg::Sensor>("sensorTopic",10);
+    publisher_ = this->create_publisher<sensor_interface::msg::Sensor>("rightSensorTopic",10);
     timer_=this->create_wall_timer(100ms,std::bind(&SensorPublish::timer_callback,this));
 
  }

@@ -61,10 +61,6 @@ int main(int argc, char const *argv[])
         
     
     }
-    
-
-    
-
     rclcpp::shutdown();
     return 0;
 }

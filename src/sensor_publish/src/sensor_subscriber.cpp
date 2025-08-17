@@ -7,8 +7,9 @@ using SetBool =std_srvs::srv::SetBool;
 class SensorSubscriber:public rclcpp::Node{
     public:
         SensorSubscriber():Node("sensorSubscriber"),sensorValue(0){
-            subscriber_ =this->create_subscription<sensor_interface::msg::Sensor>("sensorTopic",10,std::bind(&SensorSubscriber::topic_callback,this,_1));
-            service_ = this->create_service<SetBool>("sensor_service",std::bind(&SensorSubscriber::send_callback,this,_1,_2));
+            leftSubscriber_ = this->create_subscription<sensor_interface::msg::Sensor>("leftSensorTopic",10,std::bind(&SensorSubscriber::topic_callback,this,_1));
+            rightSubscriber_ =this->create_subscription<sensor_interface::msg::Sensor>("rightSensorTopic",10,std::bind(&SensorSubscriber::topic_callback,this,_1));
+            service_ = this->create_service<SetBool>("sensorService",std::bind(&SensorSubscriber::send_callback,this,_1,_2));
         }
 
     private:
@@ -23,6 +24,7 @@ class SensorSubscriber:public rclcpp::Node{
 
         leftSensor += std::to_string(sensorValue);
         rightSensor += std::to_string(sensorValue);
+        
         if (request->data)
         {
             response->message = leftSensor;
@@ -34,7 +36,8 @@ class SensorSubscriber:public rclcpp::Node{
 
     }
     
-    rclcpp::Subscription<sensor_interface::msg::Sensor>::SharedPtr subscriber_;
+    rclcpp::Subscription<sensor_interface::msg::Sensor>::SharedPtr rightSubscriber_;
+      rclcpp::Subscription<sensor_interface::msg::Sensor>::SharedPtr leftSubscriber_;
     rclcpp::Service<SetBool>::SharedPtr service_;
     long int sensorValue;
 
