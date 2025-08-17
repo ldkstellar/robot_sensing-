@@ -16,7 +16,6 @@ class SensorClientNode:public rclcpp::Node{
         
         rclcpp::Client<std_srvs::srv::SetBool_Request>::SharedPtr client_;
 
-
 };
 
 int main(int argc, char const *argv[])
