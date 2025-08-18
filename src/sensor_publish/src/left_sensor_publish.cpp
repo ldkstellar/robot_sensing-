@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-#include "sensor_interface/sensor_interface/msg/sensor.hpp"
+#include "sensor_interface/msg/sensor.hpp"
 
 using namespace std::chrono_literals;
 
@@ -24,6 +24,7 @@ private:
  rclcpp::TimerBase::SharedPtr timer_;
  rclcpp::Publisher<sensor_interface::msg::Sensor>::SharedPtr publisher_;
 };
+
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);

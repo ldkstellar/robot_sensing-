@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-#include "sensor_interface/sensor_interface/msg/sensor.hpp"
+#include "sensor_interface/msg/sensor.hpp"
 
 using namespace std::chrono_literals;
 

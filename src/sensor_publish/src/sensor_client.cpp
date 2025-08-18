@@ -10,11 +10,11 @@ using namespace std::chrono_literals;
 class SensorClientNode:public rclcpp::Node{
     public:
         SensorClientNode():Node("sensorClient"){
-            client_ = create_client<std_srvs::srv::SetBool_Request>("sensorService");
+            client_ = create_client<std_srvs::srv::SetBool>("sensorService");
             
         }
         
-        rclcpp::Client<std_srvs::srv::SetBool_Request>::SharedPtr client_;
+        rclcpp::Client<std_srvs::srv::SetBool>::SharedPtr client_;
 
 };
 

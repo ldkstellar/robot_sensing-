@@ -1,6 +1,6 @@
 #include <memory>
 #include "rclcpp/rclcpp.hpp"
-#include "sensor_interface/sensor_interface/msg/sensor.hpp"
+#include "sensor_interface/msg/sensor.hpp"
 #include "std_srvs/srv/set_bool.hpp"
 using std::placeholders::_1,std::placeholders::_2;
 using SetBool =std_srvs::srv::SetBool;
@@ -34,14 +34,12 @@ class SensorSubscriber:public rclcpp::Node{
         }
         
 
-    }
-    
+    }    
     rclcpp::Subscription<sensor_interface::msg::Sensor>::SharedPtr rightSubscriber_;
-      rclcpp::Subscription<sensor_interface::msg::Sensor>::SharedPtr leftSubscriber_;
+    rclcpp::Subscription<sensor_interface::msg::Sensor>::SharedPtr leftSubscriber_;
     rclcpp::Service<SetBool>::SharedPtr service_;
     long int sensorValue;
-
-    
+  
 };
 
 int main(int argc, char * argv[])
