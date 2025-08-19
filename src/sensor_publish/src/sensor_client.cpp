@@ -22,14 +22,14 @@ int main(int argc, char const *argv[])
 {
     rclcpp::init(argc,argv);
     std::shared_ptr<SensorClientNode> clientNode = std::make_shared<SensorClientNode>();
-    auto request = std::make_shared<std_srvs::srv::SetBool_Request>();
+    auto request = std::make_shared<std_srvs::srv::SetBool::Request>();
 
     while (true)
     {   std::string str;
         std::cout<<"문자열을 입력하세요"<<std::endl;
-        std::cin>>str;
+        std::getline(std::cin,str);
 
-        if (str !="")
+        if (str == "")
         {
             request->data =true;
         }
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
         auto result = clientNode->client_->async_send_request(request);
         if (rclcpp::spin_until_future_complete(clientNode,result) == rclcpp::FutureReturnCode::SUCCESS)
         {
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Sum: %s", result.get()->message);
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "result %s", result.get()->message.c_str());
            
         }
         else{
