@@ -23,9 +23,13 @@ int main(int argc, char const *argv[])
     rclcpp::init(argc,argv);
     std::shared_ptr<SensorClientNode> clientNode = std::make_shared<SensorClientNode>();
     auto request = std::make_shared<std_srvs::srv::SetBool::Request>();
+    std::ios::sync_with_stdio(false);  // scanf,printf 와 동기화 되어있다.
+    std::cin.tie(nullptr); 
+    std::string str;
 
     while (true)
-    {   std::string str;
+    {   
+
         std::cout<<"문자열을 입력하세요"<<std::endl;
         std::getline(std::cin,str);
 
@@ -36,6 +40,7 @@ int main(int argc, char const *argv[])
         else{
             request->data=false;
         }
+        str.clear();
 
         while (!clientNode->client_->wait_for_service(1s))
         {
